@@ -128,7 +128,7 @@ use_os_path_sep = true
 
 # Modulo Rama de GIT
 [git_branch]
-always_shw_remote = false
+always_show_remote = false
 format = '[\[$symbol\]]($style){$branch} -> ($remote_branch)'
 symbol = ''
 style = 'bold orange'
