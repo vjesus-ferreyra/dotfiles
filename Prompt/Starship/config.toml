@@ -1,0 +1,187 @@
+# Starship Prompt Personal Config
+# Author: Victor Jesús Torres Ferreyra
+# Alias: Quetzal Nocturno
+# Version: 1.0
+
+# Obtiene las configraciones por defecto basado el el siguiente esquema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Modulo del Prompt
+format = '''╭ $os:\[$localip $hostname $shell $memory_usage\]$fill$battery $time
+|$username $directory $git_branch $package $java$dotnet$php$kotlin$c$python
+╰$character'''
+
+# No se añade una linea al final del formato especificado del prompt
+add_newline = false
+
+# LINE ONE -> Informacion basica de la maquina
+
+# Modulo de la IP Local
+[localip]
+ssh_only = false
+format = 'ﯱ :([$localipv4]($style))'
+style = 'bold yellow'
+disabled = false
+
+# Modulo del nombre del anfitrion (host)
+[hostname]
+ssh_only = false
+ssh_symbol = '\[\] '
+format = '[($ssh_symbol)]($style):[$hostname]($style)'
+style = 'bold blue'
+disabled = false
+
+# Modulo del shell
+[shell]
+bash_indicator = ''
+zsh_indicator = 'zsh'
+powershell_indicator = ''
+cmd_indicator = ''
+unknown_indicator = '???'
+format = 'shell:[$indicator]($style)'
+style = 'green'
+disabled = false
+
+# Modulo del sistema operativo
+[os]
+format = "[$symbol]($style)"
+style = "bold white"
+disabled = false
+
+[os.symbols] # Distintos sistemas operativos (Linux, Mac y Windows)
+Debian = ""
+Fedora = ""
+Macos = ""
+Manjaro = ""
+Mint = ""
+NixOS = ""
+Raspbian = ""
+Ubuntu = ""
+Unknown = "???"
+Windows = ""
+
+# Uso de la memoria al momento de usar el prompt
+[memory_usage]
+threshold = 1
+format = '$symbol:[\[$ram\]\($ram_pct\)]($style)'
+symbol = ''
+style = 'bold red'
+disabled = false
+
+# Llenar huecos del sitema operativo
+[fill]
+symbol = ' '
+disabled = false
+
+# Modulo del estado de carga de la bateria
+[battery]
+full_symbol = ''
+unknown_symbol = ''
+empty_symbol = ''
+format = '[$symbol $percentage]($style)'
+disabled = false
+
+[[battery.display]] # Cambia el simbolo a cuando este por debajo del 95%
+threshold = 95
+style = 'bold white'
+discharging_symbol = ''
+
+[[battery.display]] # Cambia el simbolo a cuando este por debajo del 20%
+threshold = 20
+style = 'bold yellow'
+discharging_symbol = ''
+
+[[battery.display]] # Cambia el simbolo a cuando este por debajo del 10%
+threshold = 10 
+style = 'bold red'
+discharging_symbol = ''
+
+# Modulo para ver el tiempo
+[time]
+format = ':[$time]($style)'
+use_12hr = true
+style = 'bold cyan'
+disabled = false
+
+# LINE TWO -> Direccion, Paquetes, Repositorios y Usuario Actual
+
+# Modulo del usuario actual (Incluye cuando se conecta por ssh)
+[username]
+style_root = 'bold rec'
+style_user = 'bold yellow'
+format = '\[[$user]($style)\]'
+show_always = true
+disabled = false
+
+# Modulo Dirección actual (Ubicacion actual dentro del sistema operativo)
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+format = 'en [$path]($style) [$read_only]($read_only_style)'
+style = 'bold magenta'
+disabled = false
+read_only = '[]'
+read_only_style = 'red'
+truncation_symbol = '...\'
+home_symbol = ''
+use_os_path_sep = true
+
+# Modulo Rama de GIT
+[git_branch]
+always_shw_remote = false
+format = '[\[$symbol\]]($style){$branch} -> ($remote_branch)'
+symbol = ''
+style = 'bold orange'
+truncation_symbol = '...\'
+disabled = false 
+
+[package]
+format = '$symbol: [\[$version\]]($style)'
+symbol = ''
+style = 'red bold'
+display_private = false
+disabled = false
+
+# Lenguajes que quiero que se muestren, esto puede cambiar con el tiempo
+[java]
+format = '[$symbol: $version]($style)'
+symbol = ''
+style = 'red dimmed'
+disabled = false
+
+[dotnet] # NO C# ES TODO EL CONJUNTO DEL SDK DE MICROSOFT
+format = '[$symbol: $version]($style)'
+symbol = ''
+style = 'blue dimmed'
+disabled = false
+
+[php]
+format = '[$symbol: $version]($style)'
+symbol = ''
+style = 'purple dimmed'
+disabled = false
+
+[kotlin]
+format = '[$symbol: $version]($style)'
+symbol = ''
+style = 'orange dimmed'
+disabled = false
+
+[c]
+format = '[$symbol: $version]($style)'
+symbol = 'ﭰ'
+style = 'blue dimmed'
+disabled = false
+
+[python]
+format = '[$symbol: $version]($style)'
+symbol = ''
+style = 'green dimmed'
+disabled = false
+
+# LINE THREE -> Linea de caracter (Si salio mal o no el comando anterior)
+[character]
+format = '$symbol'
+success_symbol = '[](bold green)'
+error_symbol = '[](bold red)'
+disabled = false
