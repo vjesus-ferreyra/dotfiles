@@ -84,7 +84,7 @@
     # "locale"
     "weather"
     # "local_ip"
-    # "public_ip"
+    "public_ip"
     # "blank"
     # "colorbar"
 )
